@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Scanlines } from "@/components/ui/Scanlines"; // <--- Importar
+import { ConsoleLogger } from "@/components/layout/ConsoleLogger"; // <--- Importar
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white selection:bg-white selection:text-black flex flex-col min-h-screen`}
       >
+        {/* Camada de Efeitos Visuais e Logs */}
+        <Scanlines />
+        <ConsoleLogger />
+
         <Navbar />
         <div className="pt-16 flex-grow">
           {children}
