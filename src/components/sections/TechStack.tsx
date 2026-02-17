@@ -1,10 +1,15 @@
 "use client";
 
+import { useState } from "react"; // <--- Importar useState
 import { motion } from "framer-motion";
 import { techCategories } from "@/lib/content";
 import { Code2 } from "lucide-react";
+import { TechModal } from "@/components/ui/TechModal"; // <--- Importar o Modal
 
 export function TechStack() {
+  // Estado para controlar qual Tech está aberta
+  const [selectedTech, setSelectedTech] = useState<any>(null);
+
   return (
     <section id="tech-stack" className="min-h-screen py-20 px-6 bg-black">
       <div className="container mx-auto max-w-6xl">
@@ -24,18 +29,15 @@ export function TechStack() {
           {techCategories.map((category, index) => (
             <motion.div
               key={category.id}
-              id={category.id} // <--- O ENDEREÇO PARA O LINK DA NAVBAR
+              id={category.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group relative border border-white/10 bg-zinc-900/20 p-6 rounded-sm hover:border-white/30 transition-colors scroll-mt-24"
-              // scroll-mt-24 cria uma margem invisível no topo para a Navbar não cobrir o título
             >
-              {/* Efeito de "Glow" discreto no hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              {/* Título da Categoria */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-white/5 rounded-sm">
                   <category.icon className="w-5 h-5 text-white" />
@@ -49,13 +51,16 @@ export function TechStack() {
               {/* Lista de Tecnologias (Cards Internos) */}
               <div className="space-y-3 relative z-10">
                 {category.techs.map((tech) => (
-                  <div key={tech.name} className="flex items-center justify-between p-3 bg-black/40 border border-white/5 rounded-sm hover:border-white/20 transition-colors">
+                  <button // <--- Mudamos de div para button para ser semântico e clicável
+                    key={tech.name}
+                    onClick={() => setSelectedTech(tech)} // <--- Ação do Clique
+                    className="w-full flex items-center justify-between p-3 bg-black/40 border border-white/5 rounded-sm hover:border-white/40 hover:bg-zinc-900 transition-all cursor-pointer text-left"
+                  >
                     <div className="flex items-center gap-3">
                       <Code2 className="w-4 h-4 text-zinc-600" />
-                      <span className="text-sm font-medium text-zinc-300">{tech.name}</span>
+                      <span className="text-sm font-medium text-zinc-300 group-hover/btn:text-white">{tech.name}</span>
                     </div>
                     
-                    {/* Snippet de Código "Fake" visual */}
                     <div className="hidden sm:block text-[10px] font-mono text-zinc-600 truncate max-w-[150px]">
                       {tech.code}
                     </div>
@@ -63,12 +68,18 @@ export function TechStack() {
                     <span className="text-[10px] uppercase tracking-wider text-zinc-500 border border-white/10 px-2 py-0.5 rounded-full">
                       {tech.level}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Renderização do Modal (Fora do loop, no final da section) */}
+        <TechModal 
+          selectedTech={selectedTech} 
+          onClose={() => setSelectedTech(null)} 
+        />
 
       </div>
     </section>
