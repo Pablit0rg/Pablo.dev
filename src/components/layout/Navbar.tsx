@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react"; // <--- Add Hooks
 import { Monitor, Database, Brain, Network, Terminal, Search } from "lucide-react";
 import Link from "next/link";
+import { CommandMenu } from "@/components/ui/CommandMenu"; // <--- Importar o Menu
 
 const navItems = [
   { name: "Backend", icon: Monitor, href: "#backend" },
@@ -11,59 +13,79 @@ const navItems = [
 ];
 
 export function Navbar() {
+  const [isCommandOpen, setIsCommandOpen] = useState(false); // Estado do Menu
+
+  // Hook para detectar Ctrl+K ou Cmd+K
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault(); // Evita o comportamento padrão do navegador
+        setIsCommandOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <header className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/50 backdrop-blur-md">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        
-        {/* 1. Logo Area */}
-        <div className="flex items-center gap-2">
-          <Terminal className="w-5 h-5 text-white" />
-          <span className="font-mono text-lg font-bold tracking-tighter">
-            PABLO<span className="text-zinc-500">.DEV</span>
-          </span>
-        </div>
-
-        {/* 2. Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
-            >
-              <item.icon className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* 3. Right Side: Search & Status */}
-        <div className="hidden md:flex items-center gap-6">
+    <>
+      <header className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/50 backdrop-blur-md">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           
-          {/* SEARCH MODULE (Novo) */}
-          <div className="flex items-center border-r border-white/10 pr-6">
-            <button 
-              aria-label="Search system"
-              className="group flex items-center gap-2 text-zinc-500 hover:text-white transition-colors"
-            >
-              <Search className="w-4 h-4" />
-              <span className="text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity -ml-2 group-hover:ml-0 duration-300">
-                SEARCH
-              </span>
-            </button>
-          </div>
-
-          {/* Status Indicator */}
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-600">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          {/* Logo Area */}
+          <div className="flex items-center gap-2">
+            <Terminal className="w-5 h-5 text-white" />
+            <span className="font-mono text-lg font-bold tracking-tighter">
+              PABLO<span className="text-zinc-500">.DEV</span>
             </span>
-            AVAILABLE FOR WORK
           </div>
-        </div>
 
-      </div>
-    </header>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="group flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+              >
+                <item.icon className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                <span>{item.name}</span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right Side: Search & Status */}
+          <div className="hidden md:flex items-center gap-6">
+            
+            {/* SEARCH MODULE */}
+            <div className="flex items-center border-r border-white/10 pr-6">
+              <button 
+                onClick={() => setIsCommandOpen(true)} // <--- Abre ao clicar
+                aria-label="Search system"
+                className="group flex items-center gap-2 text-zinc-500 hover:text-white transition-colors"
+              >
+                <Search className="w-4 h-4" />
+                <span className="text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity -ml-2 group-hover:ml-0 duration-300">
+                  COMMAND + K
+                </span>
+              </button>
+            </div>
+
+            {/* Status Indicator */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-600">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              AVAILABLE FOR WORK
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      {/* Renderiza o Menu (Invisível até ser ativado) */}
+      <CommandMenu isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} />
+    </>
   );
 }
