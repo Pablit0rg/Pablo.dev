@@ -1,0 +1,21 @@
+/pablo-dev-portfolio
+├── .gitignore
+├── README.md               <-- Regras de Negócio (Atualizado)
+├── next.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+├── src/
+│   ├── app/                <-- Next.js App Router
+│   │   ├── layout.tsx      <-- Navbar fixa e Container Principal
+│   │   ├── page.tsx        <-- Apenas o gerenciador de estado da Home
+│   │   ├── globals.css     <-- Variáveis CSS (Cores Luxo)
+│   │   └── fonts.ts        <-- Configuração Geist Mono/Inter
+│   ├── components/
+│   │   ├── ui/             <-- Atoms (Button, Badge, Divider)
+│   │   ├── layout/         <-- Navbar, Footer, GridWrapper
+│   │   └── modules/        <-- TechCards, CodeBlockViewer, HeroSection
+│   ├── lib/
+│   │   ├── content.ts      <-- Dados estáticos (Textos)
+│   │   └── logic.ts        <-- (Futuro) Algoritmos reais e helpers
+│   └── types/
+│       └── index.ts        <-- Interfaces TypeScript

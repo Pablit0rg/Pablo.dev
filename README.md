@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PABLO.DEV - Principal Engineering Portfolio
+> High-Performance, Logic-Driven, Minimalist Portfolio.
 
-## Getting Started
+## 1. Visão do Projeto
+Portfólio de engenharia de software focado em comunicar senioridade, limpeza visual e domínio técnico.
+- **Referência Visual:** Minimalismo Dark, Tipografia Monospaced.
+- **Objetivo:** Atrair clientes internacionais e recrutadores de alto nível.
+- **Filosofia:** "Logic over Decoration". O front-end é a vitrine, a lógica interna é o produto.
 
-First, run the development server:
+## 2. Tech Stack (Google IDX Environment)
+- **Core:** Next.js 15 (App Router)
+- **Language:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS v4
+- **Motion:** Framer Motion (Orchestration & Gestures)
+- **Icons:** Lucide React (SVG as Code)
+- **Deploy:** Firebase Hosting (via IDX)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 3. Diretrizes de Desenvolvimento (Rigorous)
+### Protocolo de Código
+1.  **ZERO EMOJIS:** Proibido uso de emojis em commits, comentários de código ou logs. Mantenha a sobriedade absoluta.
+2.  **Clean Code:** Componentes pequenos, funcionais e tipados.
+3.  **Atomicidade:** Botões, Cards e Inputs devem ser componentes isolados.
+4.  **Mocking Consciente:** Se a funcionalidade complexa ainda não existe, use dados estáticos (mocks), mas prepare a interface (tipagem) para receber dados reais.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Protocolo de Design "Luxurious Black"
+- **Background:** `#000000` (Pure Black)
+- **Surface:** `#0A0A0A` (Graphite)
+- **Typography:** Tech/Monospaced para títulos; Sans-serif limpa para leitura.
+- **Interação:** SPA Feel. Cliques na Navbar não recarregam a página; eles renderizam componentes dinamicamente.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 4. Estrutura de Navegação
+- **Hero:** Estática, apresentação "Pablo.dev".
+- **Navbar:** Links funcionais (Backend, Database, AI Ops, Networks).
+- **Tech-Deck (Área Dinâmica):**
+    - Ao selecionar uma área, o conteúdo é injetado via React State/Context.
+    - **Future Feature:** Implementação de lógicas reais de mercado (algoritmos de busca, ordenação, requisições otimizadas) dentro destes cards.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 5. Git Standards
+- Commits imperativos e descritivos.
+- Ex: `feat: implement navbar layout`, `fix: adjust grid responsive logic`.
+- Nunca use: `up`, `foi`, `ajuste 🚀`.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+**Status:** Architecture Definition.
