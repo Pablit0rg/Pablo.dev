@@ -24,11 +24,13 @@ export function TechStack() {
           {techCategories.map((category, index) => (
             <motion.div
               key={category.id}
+              id={category.id} // <--- O ENDEREÇO PARA O LINK DA NAVBAR
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative border border-white/10 bg-zinc-900/20 p-6 rounded-sm hover:border-white/30 transition-colors"
+              className="group relative border border-white/10 bg-zinc-900/20 p-6 rounded-sm hover:border-white/30 transition-colors scroll-mt-24"
+              // scroll-mt-24 cria uma margem invisível no topo para a Navbar não cobrir o título
             >
               {/* Efeito de "Glow" discreto no hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
