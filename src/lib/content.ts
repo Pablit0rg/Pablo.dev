@@ -44,3 +44,42 @@ export const techCategories = [
     ]
   }
 ];
+
+export const projects = [
+  {
+    id: "smartleads",
+    title: "SmartLeads AI",
+    category: "AI Automation",
+    description: "Automated lead generation engine using Python and LLMs to scrape, qualify, and outreach potential clients.",
+    techs: ["Python", "OpenAI API", "FastAPI", "Pandas"],
+    link: "#",
+    github: "#"
+  },
+  {
+    id: "nexa",
+    title: "Nexa AI Agent",
+    category: "Interactive Bot",
+    description: "Afro-futurist AI character with distinct personality traits, capable of contextual conversation and memory.",
+    techs: ["TypeScript", "Next.js", "LangChain", "Vercel SDK"],
+    link: "#",
+    github: "#"
+  },
+  {
+    id: "prevdesk",
+    title: "PrevDesk System",
+    category: "Web App",
+    description: "Legal management system for pension law processes, focusing on data organization and quick access.",
+    techs: ["React", "Firebase Auth", "Firestore", "Tailwind"],
+    link: "#",
+    github: "#"
+  },
+  {
+    id: "darafa",
+    title: "DaRafa Brand",
+    category: "Landing Page",
+    description: "High-conversion landing page with modern animations and SEO optimization for a fashion brand.",
+    techs: ["Next.js", "Framer Motion", "SEO", "UI/UX"],
+    link: "#",
+    github: "#"
+  }
+];
